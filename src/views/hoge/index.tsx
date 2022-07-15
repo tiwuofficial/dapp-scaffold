@@ -16,9 +16,9 @@ export const HogeView: FC = ({ }) => {
         </h1>
         <div className="text-center">
           <Connect/>
-          <KeypairButton/>
+          {/* <KeypairButton/>
           <GetterBalance/>
-          <GetterAirdrop/>
+          <GetterAirdrop/> */}
           <Getter/>
           <Setter/>
         </div>
