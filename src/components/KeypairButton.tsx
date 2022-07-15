@@ -1,21 +1,16 @@
 import { Keypair } from '@solana/web3.js';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback } from 'react';
 import { notify } from "../utils/notifications";
 
-export const KeypairButton: FC = () => {
-    const [address, setAddress] = useState<string>('');
-    const [secret, setSecret] = useState<string>('');
+type Props = {
+  address: string;
+  secret: string;
+  setAddress: (address: string) => void;
+  setSecret: (secret: string) => void;
+}
 
-    useEffect(() => {
-      const lsAddress = localStorage.getItem('solanaAddress');
-      if (lsAddress) {
-        setAddress(lsAddress);
-      }
-      const lsSecret = localStorage.getItem('solanaSecret');
-      if (lsSecret) {
-        setSecret(lsSecret);
-      }
-    }, []);
+export const KeypairButton: FC<Props> = (props: Props) => {
+    const { address, secret, setAddress, setSecret } = props;
 
     const onClick = useCallback(async () => {
         try {

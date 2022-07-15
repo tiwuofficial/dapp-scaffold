@@ -1,18 +1,15 @@
 import { useConnection } from '@solana/wallet-adapter-react';
 import { LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback } from 'react';
 import { notify } from "../utils/notifications";
 
-export const GetterAirdrop: FC = () => {
-    const { connection } = useConnection();
-    const [address, setAddress] = useState<string>('');
+type Props = {
+  address: string;
+}
 
-    useEffect(() => {
-      const lsAddress = localStorage.getItem('solanaAddress');
-      if (lsAddress) {
-        setAddress(lsAddress);
-      }
-    }, []);
+export const GetterAirdrop: FC<Props> = (props: Props) => {
+    const { address } = props;
+    const { connection } = useConnection();
 
     const onClick = useCallback(async () => {
         try {

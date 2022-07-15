@@ -1,19 +1,16 @@
 import { useConnection } from '@solana/wallet-adapter-react';
 import { LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { notify } from "../utils/notifications";
 
-export const GetterBalance: FC = () => {
+type Props = {
+  address: string;
+}
+
+export const GetterBalance: FC<Props> = (props: Props) => {
+    const { address } = props;
     const { connection } = useConnection();
     const [balance, setBalance] = useState<number>(0);
-    const [address, setAddress] = useState<string>('');
-
-    useEffect(() => {
-      const lsAddress = localStorage.getItem('solanaAddress');
-      if (lsAddress) {
-        setAddress(lsAddress);
-      }
-    }, []);
 
     const onClick = useCallback(async () => {
         try {
