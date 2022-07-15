@@ -47,7 +47,6 @@ export const KeypairButton: FC = () => {
             </button>
             <p>Save LoaclStorage</p>
             <p>Address : {address}</p>
-            <p>Secret : {secret}</p>
         </div>
     );
 };

@@ -55,19 +55,11 @@ export const AppBar: FC = props => {
             <Link href="/">
               <a className="btn btn-ghost btn-sm rounded-btn">Home</a>
             </Link>
-            <Link href="/basics">
-              <a className="btn btn-ghost btn-sm rounded-btn">Basics</a>
-            </Link>
-            <Link href="/hoge">
-              <a className="btn btn-ghost btn-sm rounded-btn">Hoge</a>
-            </Link>
           </div>
         </div>
 
         {/* Wallet & Settings */}
         <div className="navbar-end">
-          <WalletMultiButton className="btn btn-ghost mr-4" />
-
           <div className="dropdown dropdown-end">
             <div tabIndex={0} className="btn btn-square btn-ghost text-right">
               <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
