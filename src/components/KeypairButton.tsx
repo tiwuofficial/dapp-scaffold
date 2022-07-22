@@ -29,6 +29,8 @@ export const KeypairButton: FC<Props> = (props: Props) => {
 
     return (
         <div>
+            <p>残高の追加、取得のためのアカウントを作ります</p>
+            <p>作成したアカウント情報は LocalStorage に保存されます</p>
             <button
                 className="group w-60 m-2 btn animate-pulse disabled:animate-none bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ... "
                 onClick={onClick} disabled={!!address}
@@ -40,8 +42,6 @@ export const KeypairButton: FC<Props> = (props: Props) => {
                     Create Account
                 </span>
             </button>
-            <p>Save LoaclStorage</p>
-            <p>Address : {address}</p>
         </div>
     );
 };

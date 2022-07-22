@@ -25,6 +25,7 @@ export const GetterAirdrop: FC<Props> = (props: Props) => {
 
     return (
         <div>
+            <p>残高を追加します</p>
             <button
                 className="group w-60 m-2 btn animate-pulse disabled:animate-none bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ... "
                 onClick={onClick} disabled={!address}
