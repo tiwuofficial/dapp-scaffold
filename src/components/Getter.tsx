@@ -3,35 +3,21 @@ import { PublicKey } from '@solana/web3.js';
 import { FC, useCallback, useState } from 'react';
 import { notify } from "../utils/notifications";
 import * as borsh from 'borsh';
+import { GreetingAccount, GreetingSchema } from 'views/home';
 
-// The state of a greeting account managed by the hello world program
-class GreetingAccount {
-  counter = 0;
-  constructor(fields: {counter: number} | undefined = undefined) {
-    if (fields) {
-      this.counter = fields.counter;
-    }
-  }
+type Props = {
+  greeterAddress: string;
 }
 
-// Borsh schema definition for greeting accounts
-const GreetingSchema = new Map([
-  [GreetingAccount, {kind: 'struct', fields: [['counter', 'u32']]}],
-]);
-
-export const Getter: FC = () => {
-    const { publicKey } = useWallet();
+export const Getter: FC<Props> = (props: Props) => {
+    const { greeterAddress } = props;
     const { connection } = useConnection();
     const [counter, setCounter] = useState<number>(0);
 
     const onClick = useCallback(async () => {
         try {
-
-          // gitpod で作った ID
-          const greeterPublicKey = new PublicKey('FASELKXUc16qecVvQJHWaKWcWbwcgVVBqeUCPnJXho2X');
-      
+          const greeterPublicKey = new PublicKey(greeterAddress);
           const accountInfo = await connection.getAccountInfo(greeterPublicKey);
-      
           if (accountInfo === null) {
             throw new Error('Error: cannot find the greeted account');
           }
@@ -47,13 +33,13 @@ export const Getter: FC = () => {
             notify({ type: 'error', message: `Sign Message failed!`, description: error?.message });
             console.log('error', `Sign Message failed! ${error?.message}`);
         }
-    }, [publicKey, connection, notify]);
+    }, [greeterAddress, connection, notify]);
 
     return (
         <div>
             <button
                 className="group w-60 m-2 btn animate-pulse disabled:animate-none bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ... "
-                onClick={onClick} disabled={!publicKey}
+                onClick={onClick} disabled={!greeterAddress}
             >
                 <div className="hidden group-disabled:block">
                     Wallet not connected
