@@ -34,7 +34,7 @@ export const Setter: FC<Props> = (props: Props) => {
             notify({ type: 'error', message: `Setter failed!`, description: error?.message });
             console.log('error', `Setter failed! ${error?.message}`);
         }
-    }, [connection, notify]);
+    }, [greeterAddress, secret, connection, notify]);
 
     return (
         <div>
